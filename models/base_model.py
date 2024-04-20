@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
-from models import storage
+from models.__init import storage
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
@@ -30,4 +30,4 @@ class BaseModel:
         my_dict['__class__'] = self.__class__.__name__
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
-        return my_dicti
+        return my_dict

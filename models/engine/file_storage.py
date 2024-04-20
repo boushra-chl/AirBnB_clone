@@ -12,11 +12,11 @@ class FileStorage:
 
     def new(self, obj):
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        sef.__object[key] = obj
+        self.__objects[key] = obj
         
     def save(self):
         json_data ={}
-        for key, obj in self.__objects:
+        for key, obj in self.__objects.items():
             json_data[key] = obj.to_dict()
         with open(self.__file_path, 'w') as json_file:
             json.dump(json_data, json_file)
