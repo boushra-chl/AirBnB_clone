@@ -33,7 +33,3 @@ class FileStorage:
                         if obj_class:
                             obj = obj_class(**value)
                             self.__objects[key] = obj
-                    else:
-                        print(f"Class {class_name} not found.")
-                else:
-                    print(f"Invalid key format: {key}")
