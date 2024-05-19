@@ -1,7 +1,13 @@
 #!/usr/bin/python3
+"""
+Entry point of AirBnB project
+"""
+
+
 import cmd
 from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     "entry point of the command interpreter"
