@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         for key, value in objects_dict.items():
             class_name, obj_id = key.split('.')
             if class_name == arguments[0]:
-                print objects_dict[key]
+                print (objects_dict[key])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
