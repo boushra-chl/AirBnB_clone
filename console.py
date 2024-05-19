@@ -4,6 +4,7 @@ from models.base_model import BaseModel
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
+    "entry point of the command interpreter"
     prompt = "(hbnb) "
     
     def do_quit(self, arg):
@@ -22,7 +23,12 @@ class HBNBCommand(cmd.Cmd):
         "help for EOF"
         print("EOF to exit the program")
 
+    def emptyline(self):
+        "do nothing on empty line"
+        pass
+
     def do_create(self, arg):
+        "creates a new instance"
         if not arg:
             print("** class name missing **")
             return
@@ -34,7 +40,9 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
                 return
+
     def do_show(self, arg):
+        "prints string representation of an instance"
         arguments = arg.split()
         if not arguments:
             print("** class name missing **")
@@ -55,6 +63,7 @@ class HBNBCommand(cmd.Cmd):
         print(objects_dict[key])
                 
     def do_destroy(self, arg):
+        "deletes an instance"
         arguments = arg.split()
         if not arguments:
             print("** class name missing **")
@@ -76,6 +85,7 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, arg):
+        "prints all string representations of all instances"
         arguments = arg.split()
         class_name = arguments[0]
         if class_name not in globals():
