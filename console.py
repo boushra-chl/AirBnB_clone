@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = arguments[1]
-        key = " {}.{}".format(class_name,obj_id)
+        key = "{}.{}".format(class_name,obj_id)
         objects_dict = storage.all()
         if key not in objects_dict:
             print("** no instance found **")
