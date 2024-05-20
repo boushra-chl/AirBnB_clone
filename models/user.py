@@ -9,7 +9,7 @@ class User(BaseModel):
     """class User that inherits from BaseModel"""
     def __init__(self, *args, **kwargs):
         super().__init__(self, *args, **kwargs)
-        self.email = ''
-        self.password = ''
-        self.first_name = ''
-        self.last_name = ''
+        self.email = ""
+        self.password = ""
+        self.first_name = ""
+        self.last_name = ""
