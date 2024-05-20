@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = arguments[1]
-        key =" {}.{}".format(class_name,obj_id)
+        key = " {}.{}".format(class_name,obj_id)
         objects_dict = storage.all()
         if key not in objects_dict:
             print("** no instance found **")
@@ -127,7 +127,14 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         val = arguments[3]
-        for key, value 
+        attr_type = type(objects_dict[key][attr])
+        try:
+            casted_val = attr_type(val)
+        except:
+            ValueError:
+                pass
+        objects_dict[key][attr] = casted_val
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

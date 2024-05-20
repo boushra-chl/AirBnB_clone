@@ -1,10 +1,16 @@
 #!/usr/bin/python3
+"""
+module that defines the class BaseModel
+"""
+
+
 from uuid import uuid4
 from datetime import datetime
 import models
 
 
 class BaseModel:
+    """class BaseModel"""
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
