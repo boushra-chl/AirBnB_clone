@@ -6,6 +6,7 @@ Entry point of AirBnB project
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -134,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         val = arguments[3]
-        obj = objects_dict[key]
+        obj = objects_dict[key].__dict__
         attr_type = type(getattr(obj, attr))
         try:
             casted_val = attr_type(val)
