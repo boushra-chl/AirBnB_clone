@@ -131,13 +131,14 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         val = arguments[3]
-        attr_type = type(objects_dict[key][attr])
+        obj = objects_dict[key]
+        attr_type = type(getattr(obj, attr))
         try:
             casted_val = attr_type(val)
         except ValueError:
-                pass
-        objects_dict[key][attr] = casted_val
-        
+                return
+        setattr(obj, attr, casted_val)
+        obj.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
