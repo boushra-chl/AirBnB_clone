@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = arguments[1]
-        key =" {}.{}".format(class_name,obj_id)
+        key = " {}.{}".format(class_name,obj_id)
         objects_dict = storage.all()
         if key not in objects_dict:
             print("** no instance found **")
@@ -106,6 +106,9 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         "updates an instance based on class name and id"
         arguments = arg.split()
+        if len(arguments) == 0:
+            print("** class name missing **")
+            return
         class_name = arguments[0]
         if class_name not in globals():
             print("** class doesn't exist **")
@@ -130,8 +133,7 @@ class HBNBCommand(cmd.Cmd):
         attr_type = type(objects_dict[key][attr])
         try:
             casted_val = attr_type(val)
-        except:
-            ValueError:
+        except ValueError:
                 pass
         objects_dict[key][attr] = casted_val
         
