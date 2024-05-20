@@ -39,13 +39,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         else:
+            arguments = arg.split()
             try:
-                my_instance = eval(arg)()
+                class_name = arguments[0]
+                my_instance = eval(class_name)()
                 my_instance.save()
                 print(my_instance.id)
             except NameError:
                 print("** class doesn't exist **")
-                return
 
     def do_show(self, arg):
         "prints string representation of an instance"
@@ -61,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = arguments[1]
-        key = " {}.{}".format(class_name,obj_id)
+        key = "{}.{}".format(class_name,obj_id)
         objects_dict = storage.all()
         if key not in objects_dict:
             print("** no instance found **")
@@ -82,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = arguments[1]
-        key =" {}.{}".format(class_name,obj_id)
+        key = "{}.{}".format(class_name,obj_id)
         objects_dict = storage.all()
         if key not in objects_dict:
             print("** no instance found **")
