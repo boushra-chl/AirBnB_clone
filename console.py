@@ -93,16 +93,19 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         "prints all string representations of all instances"
-        arguments = arg.split()
-        class_name = arguments[0]
-        if class_name not in globals():
-            print("** class doesn't exist **")
-            return
         objects_dict = storage.all()
-        for key, value in objects_dict.items():
-            class_name, obj_id = key.split('.')
-            if class_name == arguments[0]:
-                print (objects_dict[key])
+        if not arg:
+            print([str(obj) for obj in objects_dict.values()])
+        else:
+            arguments = arg.split()
+            class_name = arguments[0]
+            if class_name not in globals():
+                print("** class doesn't exist **")
+                return
+            for key, value in objects_dict.items():
+                class_name, obj_id = key.split('.')
+                if class_name == arguments[0]:
+                    print (objects_dict[key])
 
     def do_update(self, arg):
         "updates an instance based on class name and id"
