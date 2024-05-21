@@ -7,7 +7,10 @@ from models.base_model import BaseModel
 
 class User(BaseModel):
     """class User that inherits from BaseModel"""
+
+
     def __init__(self, *args, **kwargs):
+        """initializes the user"""
         super().__init__(self, *args, **kwargs)
         self.email = ""
         self.password = ""
