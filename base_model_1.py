@@ -9,7 +9,7 @@ class BaseModel(BaseModel):
     """Doc
     """
 
-    def save(self):
+    def to_dict(self):
         """Doc
         """
-        pass
+        return {}
