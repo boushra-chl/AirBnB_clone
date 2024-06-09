@@ -26,13 +26,16 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
+        """prints a class"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
+        """saves a class to a file"""
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
+        """creates class dictionary"""
         my_dict = self.__dict__.copy()
         my_dict['__class__'] = self.__class__.__name__
         my_dict['created_at'] = self.created_at.isoformat()
