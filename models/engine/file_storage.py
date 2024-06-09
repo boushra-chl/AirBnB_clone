@@ -15,6 +15,7 @@ from models.review import Review
 
 class FileStorage:
     """storage class"""
+
     __file_path = "file.json"
     __objects = {}
 
@@ -25,23 +26,23 @@ class FileStorage:
     def new(self, obj):
         """sets key"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """serializes to json file"""
         objects_dict = {}
-        for key, obj in self.__objects.items():
+        for key, obj in FileStorage.__objects.items():
             objects_dict[key] = obj.to_dict()
-        with open(self.__file_path, "w") as json_file:
+        with open(FileStorage.__file_path, "w") as json_file:
             json.dump(objects_dict, json_file)
 
     def reload(self):
         """deserializes the json file"""
         try:
-            with open(self.__file_path, "r") as json_file:
+            with open(FileStorage.__file_path, "r") as json_file:
                 objects_dict = json.load(json_file)
                 for key, value in objects_dict.items():
                     class_name, obj_id = key.split('.')
-                    self.__objects[key] = eval(class_name)(**value)
+                    FileStorage.__objects[key] = eval(class_name)(**value)
         except FileNotFoundError:
             pass
